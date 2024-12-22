@@ -1,6 +1,5 @@
 import ApplicationLogo from '@/Components/ApplicationLogo';
 import { Link } from '@inertiajs/react';
-import PiyikLogo from '@/Components/PiyikLogo';
 
 export default function GuestLayout({ children }) {
     return (
@@ -9,7 +8,7 @@ export default function GuestLayout({ children }) {
                 {/* Logo Section - Left Side */}
                 <div className="w-1/3 pr-8 flex flex-col justify-center">
                     <div className="w-full aspect-square bg-yellow-50 rounded-2xl p-4 flex items-center justify-center">
-                        <PiyikLogo className="w-full h-full" />
+                        <ApplicationLogo className="w-full h-full" />
                     </div>
                 </div>
 

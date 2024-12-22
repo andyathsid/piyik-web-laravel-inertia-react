@@ -19,6 +19,18 @@ Route::middleware(['auth.firebase'])->group(function() {
         return Inertia::render('Dashboard');
     })->name('dashboard');
 
+    Route::get('/dashboard/overview', function () {
+        return Inertia::render('Overview');
+    })->name('dashboard.overview');
+
+    // Route::get('/dashboard/manage-devices', function () {
+    //     return Inertia::render('ManageDevices');
+    // })->name('dashboard.manage-devices');
+
+    // Route::get('/dashboard/manage-eggs', function () {
+    //     return Inertia::render('ManageEggs');
+    // })->name('dashboard.manage-eggs');
+
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
