@@ -19,4 +19,9 @@ class User extends Authenticatable
     protected $hidden = [
         'remember_token',
     ];
+
+    public function incubators()
+    {
+        return $this->hasMany(Incubator::class);
+    }
 }

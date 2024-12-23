@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
+use App\Http\Controllers\API\SensorDataController;
 
 Route::get('/', function () {
     return Inertia::render('Welcome', [
@@ -14,14 +15,18 @@ Route::get('/', function () {
     ]);
 });
 
-Route::middleware(['auth.firebase'])->group(function() {
+Route::middleware(['auth.firebase'])->group(function () {
+    // Route::get('/dashboard', function () {
+    //     return Inertia::render('Dashboard');
+    // })->name('dashboard');
+
     Route::get('/dashboard', function () {
-        return Inertia::render('Dashboard');
+        return Inertia::render('Overview');
     })->name('dashboard');
 
-    Route::get('/dashboard/overview', function () {
-        return Inertia::render('Overview');
-    })->name('dashboard.overview');
+    Route::get('/dashboard/manage-incubator', function () {
+        return Inertia::render('ManageIncubator');
+    })->name('dashboard.manage-incubator');
 
     // Route::get('/dashboard/manage-devices', function () {
     //     return Inertia::render('ManageDevices');
@@ -40,4 +45,18 @@ Route::middleware(['auth.firebase'])->group(function() {
 
 // });
 
-require __DIR__.'/auth.php';
+
+Route::middleware(['auth.firebase'])->group(function () {
+    Route::get('api/sensor-data/history/{userId}/{incubatorId}', [SensorDataController::class, 'history'])
+        ->name('sensor-data.history');
+    Route::post('api/sensor-data/store-hourly/{userId}/{incubatorId}', [SensorDataController::class, 'storeHourly'])
+        ->name('sensor-data.sensor-data');
+    Route::post('api/sensor-data/store-daily/{userId}/{incubatorId}', [SensorDataController::class, 'storeDaily'])
+        ->name('sensor-data.sensor-data');
+    Route::post('api/sensor-data/store-weekly/{userId}/{incubatorId}', [SensorDataController::class, 'storeWeekly'])
+        ->name('sensor-data.sensor-data');
+
+});
+
+
+require __DIR__ . '/auth.php';
