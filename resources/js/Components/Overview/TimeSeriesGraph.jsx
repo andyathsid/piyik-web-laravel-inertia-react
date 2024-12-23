@@ -2,36 +2,31 @@ import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContai
 import { motion } from "framer-motion";
 
 const salesData = [
-	{ name: "Jul", sales: 4200 },
-	{ name: "Aug", sales: 3800 },
-	{ name: "Sep", sales: 5100 },
-	{ name: "Oct", sales: 4600 },
-	{ name: "Nov", sales: 5400 },
-	{ name: "Dec", sales: 7200 },
-	{ name: "Jan", sales: 6100 },
-	{ name: "Feb", sales: 5900 },
-	{ name: "Mar", sales: 6800 },
-	{ name: "Apr", sales: 6300 },
-	{ name: "May", sales: 7100 },
-	{ name: "Jun", sales: 7500 },
+	{ name: "Week 1", sales: 42 },
+	{ name: "Week 2", sales: 38 },
+	{ name: "Week 3", sales: 51 },
+	{ name: "Week 4", sales: 46 },
+	{ name: "Week 5", sales: 54 },
+	{ name: "Week 6", sales: 72 },
+	{ name: "Week 7", sales: 61 },
 ];
 
-const SalesOverviewChart = () => {
+const TimeSeriesGraph = ({ title }) => {
 	return (
 		<motion.div
-			className='bg-gray-800 bg-opacity-50 backdrop-blur-md shadow-lg rounded-xl p-6 border border-gray-700'
+			className='bg-gray-200  backdrop-blur-md shadow-lg rounded-xl p-6 '
 			initial={{ opacity: 0, y: 20 }}
 			animate={{ opacity: 1, y: 0 }}
 			transition={{ delay: 0.2 }}
 		>
-			<h2 className='text-lg font-medium mb-4 text-gray-100'>Sales Overview</h2>
+			<h2 className='text-lg font-medium mb-4 text-black'>{title}</h2>
 
 			<div className='h-80'>
 				<ResponsiveContainer width={"100%"} height={"100%"}>
 					<LineChart data={salesData}>
 						<CartesianGrid strokeDasharray='3 3' stroke='#4B5563' />
-						<XAxis dataKey={"name"} stroke='#9ca3af' />
-						<YAxis stroke='#9ca3af' />
+						<XAxis dataKey={"name"} stroke='#333333' />
+						<YAxis stroke='#333333' />
 						<Tooltip
 							contentStyle={{
 								backgroundColor: "rgba(31, 41, 55, 0.8)",
@@ -42,9 +37,9 @@ const SalesOverviewChart = () => {
 						<Line
 							type='monotone'
 							dataKey='sales'
-							stroke='#6366F1'
+							stroke='#FFD93D'
 							strokeWidth={3}
-							dot={{ fill: "#6366F1", strokeWidth: 2, r: 6 }}
+							dot={{ fill: "#FFD93D", strokeWidth: 2, r: 6 }}
 							activeDot={{ r: 8, strokeWidth: 2 }}
 						/>
 					</LineChart>
@@ -53,4 +48,4 @@ const SalesOverviewChart = () => {
 		</motion.div>
 	);
 };
-export default SalesOverviewChart;
+export default TimeSeriesGraph;
